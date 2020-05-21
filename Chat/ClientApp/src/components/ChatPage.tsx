@@ -1,9 +1,33 @@
 import React, {Component} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ChatPage.css";
+import { MessageDto } from "../models/MessageDto";
+import { UserDto } from "../models/UserDto";
+import { Message } from "./Message";
 
 export class ChatPage extends Component {
     static displayName = ChatPage.name;
+
+    getUser(id: number): UserDto {
+        return {
+            id,
+            img: id === 0 ? "http://emilcarlsson.se/assets/mikeross.png" : "http://emilcarlsson.se/assets/harveyspecter.png",
+            username: id === 0 ? "Mike Ross" : "Harvey Specter"
+        }
+    }
+
+    getMessages(): MessageDto[] {
+        return [
+            { id: 0, userId: 1, datetime: new Date(), text: "How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!" },
+            { id: 1, userId: 0, datetime: new Date(), text: "When you're backed against the wall, break the god damn thing down." },
+            { id: 2, userId: 0, datetime: new Date(), text: "Excuses don't win championships." },
+            { id: 3, userId: 1, datetime: new Date(), text: "Oh yeah, did Michael Jordan tell you that?" },
+            { id: 4, userId: 0, datetime: new Date(), text: "No, I told him that." },
+            { id: 5, userId: 0, datetime: new Date(), text: "What are your choices when someone puts a gun to your head?" },
+            { id: 6, userId: 1, datetime: new Date(), text: "What are you talking about? You do what they say or they shoot you." },
+            { id: 7, userId: 0, datetime: new Date(), text: "You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things." }
+        ];
+    }
 
     render() {
         return(
