@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./ChatWindow.css";
+import "./ChatPage.css";
 
-export class ChatWindow extends Component {
-    static displayName = ChatWindow.name;
+export class ChatPage extends Component {
+    static displayName = ChatPage.name;
 
     render() {
         return(
@@ -13,23 +13,6 @@ export class ChatWindow extends Component {
                         <div className="wrap">
                             <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" className="online" alt="" />
                             <p>Mike Ross</p>
-                            <i className="fa fa-chevron-down expand-button" aria-hidden="true"></i>
-                            <div id="status-options">
-                                <ul>
-                                    <li id="status-online" className="active"><span className="status-circle"></span> <p>Online</p></li>
-                                    <li id="status-away"><span className="status-circle"></span> <p>Away</p></li>
-                                    <li id="status-busy"><span className="status-circle"></span> <p>Busy</p></li>
-                                    <li id="status-offline"><span className="status-circle"></span> <p>Offline</p></li>
-                                </ul>
-                            </div>
-                            <div id="expanded">
-                                <label htmlFor="twitter"><i className="fab fa-facebook-f" aria-hidden="true"></i></label>
-                                <input name="twitter" type="text" value="mikeross" />
-                                <label htmlFor="twitter"><i className="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
-                                <input name="twitter" type="text" value="ross81" />
-                                <label htmlFor="twitter"><i className="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
-                                <input name="twitter" type="text" value="mike.ross" />
-                            </div>
                         </div>
                     </div>
                     <div id="search">
@@ -149,11 +132,6 @@ export class ChatWindow extends Component {
                     <div className="contact-profile">
                         <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
                         <p>Harvey Specter</p>
-                        <div className="social-media">
-                            <i className="fa fa-facebook" aria-hidden="true"></i>
-                            <i className="fa fa-twitter" aria-hidden="true"></i>
-                            <i className="fa fa-instagram" aria-hidden="true"></i>
-                        </div>
                     </div>
                     <div className="messages">
                         <ul>

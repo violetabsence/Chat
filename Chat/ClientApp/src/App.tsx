@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Route } from "react-router";
 import { Layout } from "./components/Layout";
-import { ChatWindow } from "./components/ChatWindow";
+import { ChatPage } from "./components/ChatPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
-import "./custom.css";
+import "./Global.css";
 
 library.add(fas);
 
@@ -15,7 +15,7 @@ export default class App extends Component {
     render() {
         return (
             <Layout>
-                <Route exact path="/" component={ChatWindow} />
+                <Route exact path="/" component={ChatPage} />
             </Layout>
         );
     }
