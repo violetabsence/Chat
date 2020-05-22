@@ -9,6 +9,10 @@ import { RouteComponentProps } from "react-router";
 import { UserService } from "../services/UserService";
 import { MessageService } from "../services/MessageService";
 
+interface Props extends RouteComponentProps {
+    userId: number;
+}
+
 interface State {
     currentUser?: UserDto;
     conversationUser?: UserDto;
@@ -16,10 +20,10 @@ interface State {
     messages?: MessageDto[];
 }
 
-export class ChatPage extends Component<RouteComponentProps, State> {
+export class ChatPage extends Component<Props, State> {
     static displayName = ChatPage.name;
 
-    constructor(props: RouteComponentProps) {
+    constructor(props: Props) {
         super(props);
         this.state = {
             currentUser: undefined,
@@ -30,7 +34,7 @@ export class ChatPage extends Component<RouteComponentProps, State> {
     }
 
     componentDidMount() {
-        UserService.contacts(0).then(
+        UserService.contacts(this.props.userId).then(
             users => {
                 this.setState({ contacts: users });
             },
@@ -39,7 +43,7 @@ export class ChatPage extends Component<RouteComponentProps, State> {
             }
         );
 
-        UserService.get(0).then(
+        UserService.get(this.props.userId).then(
             user => {
                 this.setState({ currentUser: user });
             },
@@ -51,7 +55,7 @@ export class ChatPage extends Component<RouteComponentProps, State> {
 
     componentDidUpdate(prevProps: RouteComponentProps, prevState: State) {
         if (prevState.conversationUser !== this.state.conversationUser && this.state.conversationUser !== undefined) {
-            MessageService.getByUser(0, this.state.conversationUser.id).then(
+            MessageService.getByUser(this.props.userId, this.state.conversationUser.id).then(
                 messages => {
                     this.setState({ messages: messages });
                 }
@@ -104,9 +108,9 @@ export class ChatPage extends Component<RouteComponentProps, State> {
                                     {this.state.conversationUser !== undefined && this.state.messages !== undefined && this.state.messages.map(m => {
                                         return (
                                             <Message key={m.id}
-                                                userImg={m.userId === 0 ? this.state.currentUser!.img : this.state.conversationUser!.img}
+                                                userImg={m.userId === this.props.userId ? this.state.currentUser!.img : this.state.conversationUser!.img}
                                                 text={m.text}
-                                                isSent={m.userId === 0}
+                                                isSent={m.userId === this.props.userId}
                                             />
                                         )
                                     })}
