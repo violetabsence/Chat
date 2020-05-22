@@ -67,7 +67,7 @@ export class ChatPage extends Component<RouteComponentProps, { activeUserId?: nu
 
     render() {
         return (
-            <div id="frame" onClick={this.getMessages}>
+            <div id="frame">
                 <div id="sidepanel">
                     <div id="profile">
                         <div className="wrap">
