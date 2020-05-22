@@ -398,6 +398,7 @@
 }
 
 #frame #sidepanel #contacts ul li.contact {
+    list-style: none;
     position: relative;
     padding: 10px 0 15px 0;
     font-size: 0.9em;
