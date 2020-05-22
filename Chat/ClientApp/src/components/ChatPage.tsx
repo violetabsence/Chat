@@ -4,9 +4,23 @@ import "./ChatPage.css";
 import { MessageDto } from "../models/MessageDto";
 import { UserDto } from "../models/UserDto";
 import { Message } from "./Message";
+import { OnlineStatus } from "../models/OnlineStatus";
+import { Contact } from "./Contact";
+import { RouteComponentProps } from "react-router";
 
-export class ChatPage extends Component {
+export class ChatPage extends Component<RouteComponentProps, { activeUserId?: number }> {
     static displayName = ChatPage.name;
+
+    constructor(props: RouteComponentProps) {
+        super(props);
+        this.state = {
+            activeUserId: undefined
+        };
+    }
+
+    setActiveUserId(activeUserId?: number): void {
+        this.setState({ activeUserId });
+    }
 
     getUsers(): UserDto[] {
         return [
@@ -52,8 +66,8 @@ export class ChatPage extends Component {
     }
 
     render() {
-        return(
-            <div id="frame">
+        return (
+            <div id="frame" onClick={this.getMessages}>
                 <div id="sidepanel">
                     <div id="profile">
                         <div className="wrap">
@@ -67,106 +81,9 @@ export class ChatPage extends Component {
                     </div>
                     <div id="contacts">
                         <ul>
-                            <li className="contact">
-                                <div className="wrap">
-                                    <span className="contact-status online"></span>
-                                    <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Louis Litt</p>
-                                        <p className="preview">You just got LITT up, Mike.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="contact active">
-                                <div className="wrap">
-                                    <span className="contact-status busy"></span>
-                                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Harvey Specter</p>
-                                        <p className="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="contact">
-                                <div className="wrap">
-                                    <span className="contact-status away"></span>
-                                    <img src="http://emilcarlsson.se/assets/rachelzane.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Rachel Zane</p>
-                                        <p className="preview">I was thinking that we could have chicken tonight, sounds good?</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="contact">
-                                <div className="wrap">
-                                    <span className="contact-status online"></span>
-                                    <img src="http://emilcarlsson.se/assets/donnapaulsen.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Donna Paulsen</p>
-                                        <p className="preview">Mike, I know everything! I'm Donna..</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="contact">
-                                <div className="wrap">
-                                    <span className="contact-status busy"></span>
-                                    <img src="http://emilcarlsson.se/assets/jessicapearson.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Jessica Pearson</p>
-                                        <p className="preview">Have you finished the draft on the Hinsenburg deal?</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="contact">
-                                <div className="wrap">
-                                    <span className="contact-status"></span>
-                                    <img src="http://emilcarlsson.se/assets/haroldgunderson.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Harold Gunderson</p>
-                                        <p className="preview">Thanks Mike! :)</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="contact">
-                                <div className="wrap">
-                                    <span className="contact-status"></span>
-                                    <img src="http://emilcarlsson.se/assets/danielhardman.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Daniel Hardman</p>
-                                        <p className="preview">We'll meet again, Mike. Tell Jessica I said 'Hi'.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="contact">
-                                <div className="wrap">
-                                    <span className="contact-status busy"></span>
-                                    <img src="http://emilcarlsson.se/assets/katrinabennett.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Katrina Bennett</p>
-                                        <p className="preview">I've sent you the files for the Garrett trial.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="contact">
-                                <div className="wrap">
-                                    <span className="contact-status"></span>
-                                    <img src="http://emilcarlsson.se/assets/charlesforstman.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Charles Forstman</p>
-                                        <p className="preview">Mike, this isn't over.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="contact">
-                                <div className="wrap">
-                                    <span className="contact-status"></span>
-                                    <img src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
-                                    <div className="meta">
-                                        <p className="name">Jonathan Sidwell</p>
-                                        <p className="preview"><span>You:</span> That's bullshit. This deal is solid.</p>
-                                    </div>
-                                </div>
-                            </li>
+                            {this.getContacts(0).map(u => {
+                                return <Contact key={u.id} contact={u} isActive={this.state.activeUserId === u.id} onClick={() => this.setActiveUserId(u.id)} />
+                            })}
                         </ul>
                     </div>
                     <div id="bottom-bar">
