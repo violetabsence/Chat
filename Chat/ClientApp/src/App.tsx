@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router";
+import { Route, Redirect } from "react-router";
 import { Layout } from "./components/Layout";
 import { ChatPage } from "./components/ChatPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -15,8 +15,8 @@ export default class App extends Component {
     render() {
         return (
             <Layout>
-                <Route exact path="/" component={ChatPage} />
                 <Route exact path="/" render={(props) => <ChatPage {...props} userId={0} />} />
+                <Redirect from="*" to="/" />
             </Layout>
         );
     }
