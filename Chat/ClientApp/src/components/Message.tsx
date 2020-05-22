@@ -11,7 +11,7 @@ export const Message = (props: Props) => {
     return (
         <li className={props.isSent ? "sent" : "replies"}>
             <Avatar imgLink={props.userImg} />
-            <p>{props.text}</p> 
+            <p>{props.text}</p>
         </li>
     )
 }
