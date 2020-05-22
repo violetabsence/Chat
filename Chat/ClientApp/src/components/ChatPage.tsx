@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ChatPage.css";
 import { MessageDto } from "../models/MessageDto";
@@ -92,9 +92,9 @@ export class ChatPage extends Component<RouteComponentProps, State> {
                     </div>
                     <div className="message-input">
                         <div className="wrap">
-                        <input type="text" placeholder="Write your message..." />
-                        <i className="fa fa-paperclip attachment" aria-hidden="true"></i>
-                        <button className="submit"><i className="fas fa-paper-plane" aria-hidden="true"></i></button>
+                            <input type="text" placeholder="Write your message..." />
+                            <i className="fa fa-paperclip attachment" aria-hidden="true"></i>
+                            <button className="submit"><i className="fas fa-paper-plane" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
