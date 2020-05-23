@@ -3,5 +3,5 @@ export interface UserDto {
     id: number;
     username: string;
     img: string;
-    status: OnlineStatus;
+    onlineStatus: OnlineStatus;
 }

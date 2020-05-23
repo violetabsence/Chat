@@ -12,7 +12,7 @@ export const Contact = (props: Props) => {
     const { contact, isActive, ...restProps } = props;
 
     const statusClass = useMemo(() => {
-        switch (contact.status) {
+        switch (contact.onlineStatus) {
             case OnlineStatus.online:
                 return "online";
             case OnlineStatus.busy:
@@ -23,7 +23,7 @@ export const Contact = (props: Props) => {
             default:
                 return "";
         }
-    }, [contact.status]);
+    }, [contact.onlineStatus]);
 
     return (
         <li className={`contact ${isActive ? "active" : ""}`} {...restProps}>

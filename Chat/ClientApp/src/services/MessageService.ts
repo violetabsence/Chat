@@ -17,11 +17,10 @@ export const MessageService = {
     getByUser: (userId: number, conversationId: number): Promise<MessageDto[]> => {
         return new Promise<MessageDto[]>(resolve => {
             const result = messages.map(m => {
+                const { userId, ...rest } = m;
                 return {
-                    id: m.id,
-                    userId: m.userId === sent ? userId : conversationId,
-                    datetime: m.datetime,
-                    text: m.text
+                    userId: userId === sent ? userId : conversationId,
+                    ...rest
                 } as MessageDto;
             });
             resolve(result);
