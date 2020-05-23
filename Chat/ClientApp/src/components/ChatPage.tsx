@@ -7,6 +7,7 @@ import { Contact } from "./Contact";
 import { RouteComponentProps } from "react-router";
 import { UserService } from "../services/UserService";
 import { MessageService } from "../services/MessageService";
+import { SearchContacts } from "./SearchContacts";
 
 interface Props extends RouteComponentProps {
     userId: number;
@@ -16,7 +17,9 @@ interface State {
     currentUser?: UserDto;
     conversationUser?: UserDto;
     contacts?: UserDto[];
+    filteredContacts?: UserDto[];
     messages?: MessageDto[];
+    textSearch: string;
 }
 
 export class ChatPage extends Component<Props, State> {
@@ -28,14 +31,16 @@ export class ChatPage extends Component<Props, State> {
             currentUser: undefined,
             conversationUser: undefined,
             contacts: undefined,
-            messages: undefined
+            filteredContacts: undefined,
+            messages: undefined,
+            textSearch: ""
         };
     }
 
     componentDidMount() {
         UserService.contacts(this.props.userId).then(
             users => {
-                this.setState({ contacts: users });
+                this.setState({ contacts: users, filteredContacts: users });
             },
             error => {
                 console.error(error);
@@ -60,6 +65,17 @@ export class ChatPage extends Component<Props, State> {
                 }
             );
         }
+
+        if (this.state.contacts !== undefined && prevState.textSearch !== this.state.textSearch) {
+            const search = this.state.textSearch.toLowerCase();
+            const filteredContacts = this.state.contacts.filter(item => (item.username.toLowerCase().indexOf(search) !== -1));
+            this.setState({ filteredContacts });
+        }
+    }
+
+
+    onSearchQueryChange(value: string) {
+        this.setState({ textSearch: value });
     }
 
     render() {
@@ -74,13 +90,10 @@ export class ChatPage extends Component<Props, State> {
                                     <p>Mike Ross</p>
                                 </div>
                             </div>
-                            <div id="search">
-                                <label htmlFor=""><i className="fab fa-search" aria-hidden="true"></i></label>
-                                <input type="text" placeholder="Search contacts..." />
-                            </div>
+                            <SearchContacts setSearchText={this.onSearchQueryChange.bind(this)} />
                             <div id="contacts">
                                 <ul>
-                                    {this.state.contacts !== undefined && this.state.contacts.map(u => {
+                                    {this.state.filteredContacts !== undefined && this.state.filteredContacts.map(u => {
                                         return (
                                             <Contact
                                                 key={u.id}
