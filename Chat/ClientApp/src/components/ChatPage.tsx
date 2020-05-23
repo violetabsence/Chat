@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ChatPage.css";
 import { MessageDto } from "../models/MessageDto";
 import { UserDto } from "../models/UserDto";

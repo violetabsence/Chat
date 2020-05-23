@@ -28,7 +28,7 @@ export const Contact = (props: Props) => {
     return (
         <li className={`contact ${isActive ? "active" : ""}`} {...restProps}>
             <div className="wrap">
-                <span className={`contact-status ${statusClass}`}/>
+                <span className={`contact-status ${statusClass}`} />
                 <Avatar imgLink={contact.img} />
                 <div className="meta">
                     <p className="name">{contact.username}</p>

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { UserDto } from "../models/UserDto";
+import React from "react";
+
 
 interface Props {
     imgLink: string;
@@ -7,6 +7,6 @@ interface Props {
 
 export const Avatar = (props: Props) => {
     return (
-        <img src={props.imgLink}/>
+        <img src={props.imgLink} />
     )
 }
