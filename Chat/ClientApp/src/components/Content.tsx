@@ -55,7 +55,7 @@ export const Content = (props: Props) => {
                                 type="text"
                                 placeholder="Write your message..."
                                 value={textMessage}
-                                disabled={sending}
+                                readOnly={sending}
                                 onChange={onChange}
                             />
                             <i className="fa fa-paperclip attachment" aria-hidden="true"></i>
