@@ -66,7 +66,6 @@ export class ChatPage extends Component<Props, State> {
                             setConversationUser={this.setConversationUser}
                         />
                         <Content
-                            userId={this.props.userId}
                             currentUser={this.state.currentUser}
                             conversationUser={this.state.conversationUser}
                         />
