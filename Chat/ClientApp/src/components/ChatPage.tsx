@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import "./ChatPage.css";
-import { MessageDto } from "../models/MessageDto";
 import { UserDto } from "../models/UserDto";
 import { RouteComponentProps } from "react-router";
 import { UserService } from "../services/UserService";
-import { MessageService } from "../services/MessageService";
 import { Sidepanel } from "./Sidepanel";
 import { Content } from "./Content";
 
@@ -16,7 +14,6 @@ interface State {
     currentUser?: UserDto;
     conversationUser?: UserDto;
     contacts?: UserDto[];
-    messages?: MessageDto[];
 }
 
 export class ChatPage extends Component<Props, State> {
@@ -27,8 +24,7 @@ export class ChatPage extends Component<Props, State> {
         this.state = {
             currentUser: undefined,
             conversationUser: undefined,
-            contacts: undefined,
-            messages: undefined,
+            contacts: undefined
         };
 
         this.setConversationUser = this.setConversationUser.bind(this);
@@ -52,16 +48,6 @@ export class ChatPage extends Component<Props, State> {
                 console.error(error);
             }
         );
-    }
-
-    componentDidUpdate(prevProps: RouteComponentProps, prevState: State) {
-        if (prevState.conversationUser !== this.state.conversationUser && this.state.conversationUser !== undefined) {
-            MessageService.getByUser(this.props.userId, this.state.conversationUser.id).then(
-                messages => {
-                    this.setState({ messages: messages });
-                }
-            );
-        }
     }
 
     setConversationUser(user: UserDto) {
