@@ -4,6 +4,7 @@ import { Contact } from "./Contact";
 import { UserDto } from "../models/UserDto";
 
 interface Props {
+    currentUser?: UserDto;
     contacts?: UserDto[];
     conversationUser?: UserDto;
     setConversationUser: (user: UserDto) => void;
@@ -25,8 +26,8 @@ export const Sidepanel = (props: Props) => {
         <div id="sidepanel">
             <div id="profile">
                 <div className="wrap">
-                    <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" className="online" alt="" />
-                    <p>Mike Ross</p>
+                    <img id="profile-img" src={props.currentUser?.img} className="online" alt="" />
+                    <p>{props.currentUser?.username}</p>
                 </div>
             </div>
             <SearchContacts setSearchText={setSearchText} />

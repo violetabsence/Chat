@@ -74,6 +74,7 @@ export class ChatPage extends Component<Props, State> {
                 {this.state.currentUser !== undefined && (
                     <React.Fragment>
                         <Sidepanel
+                            currentUser={this.state.currentUser}
                             contacts={this.state.contacts}
                             conversationUser={this.state.conversationUser}
                             setConversationUser={this.setConversationUser}

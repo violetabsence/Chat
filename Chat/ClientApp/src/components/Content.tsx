@@ -13,8 +13,8 @@ export const Content = (props: Props) => {
     return (
         <div className="content">
             <div className="contact-profile">
-                <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                <p>Harvey Specter</p>
+                <img src={props.conversationUser?.img} alt="" />
+                <p>{props.conversationUser?.username}</p>
             </div>
             <Messages
                 userId={props.userId}
