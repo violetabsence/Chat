@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { MessageDto } from "../models/MessageDto";
 import { UserDto } from "../models/UserDto";
 import { Message } from "./Message";
@@ -10,8 +10,16 @@ interface Props {
 }
 
 export const Messages = (props: Props) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (containerRef.current !== null) {
+            containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+    }, [containerRef.current, props.messages])
+
     return (
-        <div className="messages">
+        <div ref={containerRef} className="messages">
             <ul>
                 {props.messages.map(m => {
                     return (
