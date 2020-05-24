@@ -1,5 +1,6 @@
 import { MessageDto } from "../models/MessageDto"
 
+let increment = 7;
 const sent = 0;
 const received = 1;
 const messages: MessageDto[] = [
@@ -24,6 +25,17 @@ export const MessageService = {
                 } as MessageDto;
             });
             resolve(result);
+        });
+    },
+    sendMessage: (currentUserId: number, conversationUserId: number, text: string): Promise<MessageDto> => {
+        return new Promise<MessageDto>(resolve => {
+            const message = {
+                id: increment = increment + 1,
+                userId: currentUserId,
+                datetime: new Date(),
+                text
+            } as MessageDto;
+            resolve(message);
         });
     }
 }
