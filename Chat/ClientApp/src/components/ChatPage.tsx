@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import "./ChatPage.css";
 import { MessageDto } from "../models/MessageDto";
 import { UserDto } from "../models/UserDto";
-import { Message } from "./Message";
 import { RouteComponentProps } from "react-router";
 import { UserService } from "../services/UserService";
 import { MessageService } from "../services/MessageService";
 import { Sidepanel } from "./Sidepanel";
+import { Content } from "./Content";
 
 interface Props extends RouteComponentProps {
     userId: number;
@@ -78,33 +78,11 @@ export class ChatPage extends Component<Props, State> {
                             conversationUser={this.state.conversationUser}
                             setConversationUser={this.setConversationUser}
                         />
-                        <div className="content">
-                            <div className="contact-profile">
-                                <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                                <p>Harvey Specter</p>
-                            </div>
-                            <div className="messages">
-                                <ul>
-                                    {this.state.conversationUser !== undefined && this.state.messages !== undefined && this.state.messages.map(m => {
-                                        return (
-                                            <Message
-                                                key={m.id}
-                                                userImg={m.userId === this.props.userId ? this.state.currentUser!.img : this.state.conversationUser!.img}
-                                                text={m.text}
-                                                isSent={m.userId === this.props.userId}
-                                            />
-                                        )
-                                    })}
-                                </ul>
-                            </div>
-                            <div className="message-input">
-                                <div className="wrap">
-                                    <input type="text" placeholder="Write your message..." />
-                                    <i className="fa fa-paperclip attachment" aria-hidden="true"></i>
-                                    <button className="submit"><i className="fas fa-paper-plane" aria-hidden="true"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                        <Content
+                            userId={this.props.userId}
+                            currentUser={this.state.currentUser}
+                            conversationUser={this.state.conversationUser}
+                        />
                     </React.Fragment>
                 )}
             </div>
