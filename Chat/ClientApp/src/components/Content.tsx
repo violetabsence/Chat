@@ -16,6 +16,12 @@ export const Content = (props: Props) => {
         if (props.conversationUser !== undefined) {
             MessageService.getByUser(props.currentUser.id, props.conversationUser.id).then(setMessages);
         }
+        const subscription = MessageService.messageChannel().subscribe(message => {
+            if (message) {
+                setMessages(messages => [...messages, message]);
+            }
+        });
+        return () => subscription.unsubscribe();
     }, [props.conversationUser]);
 
     const onMessageSent = (message: MessageDto) => {

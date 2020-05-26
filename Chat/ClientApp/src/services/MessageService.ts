@@ -1,5 +1,7 @@
-import { MessageDto } from "../models/MessageDto"
+import { MessageDto } from "../models/MessageDto";
+import { Subject } from 'rxjs';
 
+const subject = new Subject<MessageDto>();
 let increment = 7;
 const sent = 0;
 const received = 1;
@@ -27,6 +29,9 @@ export const MessageService = {
             resolve(result);
         });
     },
+
+    messageChannel: () => subject.asObservable(),
+
     sendMessage: (currentUserId: number, conversationUserId: number, text: string): Promise<MessageDto> => {
         return new Promise<MessageDto>(resolve => {
             const message = {
@@ -36,6 +41,13 @@ export const MessageService = {
                 text
             } as MessageDto;
             resolve(message);
+
+            setTimeout(() => subject.next({
+                id: increment = increment + 1,
+                userId: conversationUserId,
+                datetime: new Date(),
+                text: "+++" + text + "+++"
+            }), 2000);
         });
     }
 }
