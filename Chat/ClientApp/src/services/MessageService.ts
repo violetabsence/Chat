@@ -1,5 +1,5 @@
 import { MessageDto } from "../models/MessageDto";
-import { Subject } from 'rxjs';
+import { Subject } from "rxjs";
 
 const subject = new Subject<MessageDto>();
 let increment = 7;
@@ -46,7 +46,7 @@ export const MessageService = {
                 id: increment = increment + 1,
                 userId: conversationUserId,
                 datetime: new Date(),
-                text: "+++" + text + "+++"
+                text: `+++${text}+++`
             }), 2000);
         });
     }
