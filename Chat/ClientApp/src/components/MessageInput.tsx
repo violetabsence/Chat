@@ -2,6 +2,7 @@ import React, { useState, useCallback, ChangeEvent, FormEvent } from "react";
 import { UserDto } from "../models/UserDto";
 import { MessageService } from "../services/MessageService";
 import { MessageDto } from "../models/MessageDto";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
     currentUser: UserDto;
@@ -41,9 +42,10 @@ export const MessageInput = (props: Props) => {
                     readOnly={sending}
                     onChange={onChange}
                 />
-                <i className="fa fa-paperclip attachment" aria-hidden="true"></i>
                 <button className="submit" disabled={sending}>
-                    <i className="fas fa-paper-plane" aria-hidden="true"></i>
+                    <i aria-hidden="true">
+                        <FontAwesomeIcon icon={"paper-plane"} />
+                    </i>
                 </button>
             </div>
         </form>

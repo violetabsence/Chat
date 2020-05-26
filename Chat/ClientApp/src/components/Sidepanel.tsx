@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SearchContacts } from "./SearchContacts";
 import { Contact } from "./Contact";
 import { UserDto } from "../models/UserDto";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
     currentUser?: UserDto;
@@ -46,8 +47,17 @@ export const Sidepanel = (props: Props) => {
                 </ul>
             </div>
             <div id="bottom-bar">
-                <button id="addcontact"><i className="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-                <button id="settings"><i className="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
+                <button id="addcontact">
+                    <i aria-hidden="true">
+                        <FontAwesomeIcon icon={"user-plus"} />
+                    </i>
+                    <span>Add contact</span></button>
+                <button id="settings">
+                    <i aria-hidden="true">
+                        <FontAwesomeIcon icon={"cog"} />
+                    </i>
+                    <span>Settings</span>
+                </button>
             </div>
         </div>
     );
