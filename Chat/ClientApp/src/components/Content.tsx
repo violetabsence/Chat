@@ -37,7 +37,7 @@ export const Content = (props: Props) => {
                     />
                     <MessageInput
                         currentUser={props.currentUser}
-                        conversationUser={props.currentUser}
+                        conversationUser={props.conversationUser}
                         onMessageSent={onMessageSent}
                     />
                 </React.Fragment>
