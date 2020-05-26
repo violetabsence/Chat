@@ -1,7 +1,13 @@
 /* Provide sufficient contrast against white background */
 
+html {
+    width: auto;
+    box-sizing: content-box;
+}
+
 body {
-    min-height: 100vh;
+    height: auto;
+    width: auto;
     background: #e4e9e6;
     font-family: "proxima-nova", "Source Sans Pro", sans-serif;
     font-size: 1em;
@@ -14,14 +20,4 @@ body {
 
 a {
     color: #0366d6;
-}
-
-code {
-    color: #E01A76;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
 }

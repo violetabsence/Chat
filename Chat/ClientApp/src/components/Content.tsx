@@ -34,7 +34,7 @@ export const Content = (props: Props) => {
                 <React.Fragment>
                     <div className="contact-profile">
                         <img src={props.conversationUser?.img} alt="" />
-                        <p>{props.conversationUser?.username}</p>
+                        <div>{props.conversationUser?.username}</div>
                     </div>
                     <Messages
                         currentUser={props.currentUser}
